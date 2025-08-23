@@ -1,3 +1,3 @@
-from clases import *
+import clases
 
-print(clases.generar_mazo())
+print(clases.genera_mazo())
