@@ -10,10 +10,6 @@ def genera_mazo():
     random.shuffle(mazo)
     return mazo
 
-mazo_desordenado = genera_mazo()
-print(mazo_desordenado)
-print(f"Número de cartas en el mazo: {len(mazo_desordenado)}")
-
 
 def seleccion(mazo):
     orden_palos = {'c': 0, 't': 1, 'd': 2, 'p': 3}
