@@ -1,62 +1,81 @@
+#Llamado de clase 
 import random  
 
+# Función que genera un mazo estándar de 52 cartas y lo baraja
 def genera_mazo():  
-    palos = ['c', 't', 'd', 'p']
+    # Tipos de cartas: c = corazones, t = tréboles, d = diamantes, p = picas
+    tipos_cartas = ['c', 't', 'd', 'p']
+    
+    # Valores de las cartas del 1 al 13 (1 = As, 11 = J, 12 = Q, 13 = K)
     valores = list(range(1, 14))
+    
+    # Lista que contendrá todas las combinaciones de valor+tipo
     mazo = []
-    for mazo_nuevo in palos:
+    
+    # Genera todas las cartas posibles (ejemplo: "1c", "12d", "13p")
+    for tipo in tipos_cartas:
         for valor in valores:
-            mazo.append(f"{valor}{mazo_nuevo}") 
+            mazo.append(f"{valor}{tipo}") 
+    
+    # Mezcla el mazo en su lugar (modifica la lista directamente)
     random.shuffle(mazo)
+    
+    # Devuelve el mazo ya barajado
     return mazo
-
+    
 def organizar_mazo(cartas):
+    # Listas para separar las cartas según su tipo
     corazones = []
     treboles = []
     diamantes = []
     picas = []
 
+    # Recorremos todas las cartas del mazo recibido
     for carta in cartas:
-        numero = int(carta[:-1])  # Todo menos la última letra
-        mazo_nuevo = carta[-1]          # Última letra
+        numero = int(carta[:-1])   # Extrae el número (todo menos la última letra)
+        tipo = carta[-1]           # Extrae el tipo (última letra)
 
-        if mazo_nuevo == 'c':
+        # Clasifica la carta según su tipo y la guarda en la lista correspondiente
+        if tipo == 'c':
             corazones.append(numero)
-        elif mazo_nuevo == 't':
+        elif tipo == 't':
             treboles.append(numero)
-        elif mazo_nuevo == 'd':
+        elif tipo == 'd':
             diamantes.append(numero)
-        elif mazo_nuevo == 'p':
+        elif tipo == 'p':
             picas.append(numero)
 
+    # Devuelve las listas separadas por tipo
     return corazones, treboles, diamantes, picas
 
 
 def selection_sort(lista):
     n = len(lista)
-    # Recorre la lista de 0 a n-1
+    # Recorre la lista desde la posición 0 hasta la última
     for i in range(n):
-        # Encuentra el índice del elemento mínimo en la parte no ordenada
+        # Supone que el elemento actual (i) es el mínimo
         min_idx = i
+        # Busca un valor menor en el resto de la lista
         for j in range(i+1, n):
-            # Compara el elemento actual con el mínimo encontrado
             if lista[j] < lista[min_idx]:
                 min_idx = j
-        # Intercambia el elemento mínimo con el primer elemento de la parte no ordenada
+        # Intercambia el mínimo encontrado con el actual
         lista[i], lista[min_idx] = lista[min_idx], lista[i]
+    # Devuelve la lista ya ordenada
     return lista
+
 
 def insertion_sort(lista):
     n = len(lista)
-    # Recorre la lista desde el segundo elemento
+    # Recorre la lista a partir del segundo elemento
     for i in range(1, n):
-        key = lista[i]
+        key = lista[i]       # Elemento actual a insertar en la parte ordenada
         j = i - 1
-        # Mueve los elementos de la lista ordenada que son mayores que la 'key'
-        # a una posición adelante de su posición actual
+        # Desplaza hacia la derecha los elementos mayores que 'key'
         while j >= 0 and key < lista[j]:
             lista[j + 1] = lista[j]
-
             j -= 1
+        # Inserta 'key' en la posición correcta
         lista[j + 1] = key
+    # Devuelve la lista ordenada
     return lista
