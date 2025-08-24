@@ -49,20 +49,20 @@ def organizar_mazo(cartas):
     return corazones, treboles, diamantes, picas
 
 
-def selection_sort(lista):
-    n = len(lista)
-    # Recorre la lista desde la posición 0 hasta la última
-    for i in range(n):
-        # Supone que el elemento actual (i) es el mínimo
-        min_idx = i
-        # Busca un valor menor en el resto de la lista
-        for j in range(i+1, n):
-            if lista[j] < lista[min_idx]:
-                min_idx = j
-        # Intercambia el mínimo encontrado con el actual
-        lista[i], lista[min_idx] = lista[min_idx], lista[i]
-    # Devuelve la lista ya ordenada
-    return lista
+# def selection_sort(lista):
+#     n = len(lista)
+#     # Recorre la lista desde la posición 0 hasta la última
+#     for i in range(n):
+#         # Supone que el elemento actual (i) es el mínimo
+#         min_idx = i
+#         # Busca un valor menor en el resto de la lista
+#         for j in range(i+1, n):
+#             if lista[j] < lista[min_idx]:
+#                 min_idx = j
+#         # Intercambia el mínimo encontrado con el actual
+#         lista[i], lista[min_idx] = lista[min_idx], lista[i]
+#     # Devuelve la lista ya ordenada
+#     return lista
 
 
 def insertion_sort(lista):
