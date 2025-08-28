@@ -68,12 +68,6 @@ def organizar_mazo(cartas):
 #     # Devuelve la lista ya ordenada
 #     return lista
 
-def convertir(carta):
-    # separa numero y palo
-    numero = int(carta[:-1])   # todo menos el último caracter -> número
-    palo = carta[-1]           # último caracter -> letra (palo)
-    return (numero, palo)
-
 def insertion_sort(lista):
     n = len(lista)
     for i in range(1, n):
