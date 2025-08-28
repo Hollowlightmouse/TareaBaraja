@@ -37,13 +37,17 @@ def organizar_mazo(cartas):
 
         # Clasifica la carta según su tipo y la guarda en la lista correspondiente
         if tipo == 'c':
-            corazones.append(numero)
+            numero=str(numero)
+            corazones.append(f"{numero}{tipo}")
         elif tipo == 't':
-            treboles.append(numero)
+            numero=str(numero)
+            treboles.append(f"{numero}{tipo}")
         elif tipo == 'd':
-            diamantes.append(numero)
+            numero=str(numero)
+            diamantes.append(f"{numero}{tipo}")
         elif tipo == 'p':
-            picas.append(numero)
+            numero=str(numero)
+            picas.append(f"{numero}{tipo}")
 
     # Devuelve las listas separadas por tipo
     return corazones, treboles, diamantes, picas
@@ -64,18 +68,35 @@ def organizar_mazo(cartas):
 #     # Devuelve la lista ya ordenada
 #     return lista
 
+def convertir(carta):
+    # separa numero y palo
+    numero = int(carta[:-1])   # todo menos el último caracter -> número
+    palo = carta[-1]           # último caracter -> letra (palo)
+    return (numero, palo)
 
 def insertion_sort(lista):
     n = len(lista)
-    # Recorre la lista a partir del segundo elemento
     for i in range(1, n):
-        key = lista[i]       # Elemento actual a insertar en la parte ordenada
+        key = lista[i]
         j = i - 1
-        # Desplaza hacia la derecha los elementos mayores que 'key'
-        while j >= 0 and key < lista[j]:
-            lista[j + 1] = lista[j]
-            j -= 1
-        # Inserta 'key' en la posición correcta
+        
+        # Extrae número y palo de la carta 'key'
+        key_num = int(key[:-1])   # número (ej: "10c" -> 10)
+        key_palo = key[-1]        # palo (ej: "10c" -> "c")
+
+        # Comparación dentro del while
+        while j >= 0:
+            # Extrae número y palo de la carta en lista[j]
+            j_num = int(lista[j][:-1])
+            j_palo = lista[j][-1]
+            
+            # Compara primero por número y luego por palo
+            if key_num < j_num or (key_num == j_num and key_palo < j_palo):
+                lista[j + 1] = lista[j]
+                j -= 1
+            else:
+                break
+        
         lista[j + 1] = key
-    # Devuelve la lista ordenada
+
     return lista
